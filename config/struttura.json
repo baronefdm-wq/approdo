@@ -1,0 +1,73 @@
+{
+  "_nota": "Unico file da modificare per un nuovo cliente. I testi hanno la versione italiana (it) e inglese (en). Le foto vanno in public/foto/ e qui si indica solo il nome del file; se manca la foto si vede un riquadro colorato.",
+  "nome": "Casa Libeccio",
+  "tipo": { "it": "B&B · Lido di Ostia", "en": "B&B · Lido di Ostia" },
+  "titolo": { "it": "Il mare di Roma, sotto casa.", "en": "Rome's seaside, on your doorstep." },
+  "descrizione": {
+    "it": "Un B&B in un palazzo anni '30 tra il lungomare e la stazione Lido Centro. Mare la mattina, il Colosseo il pomeriggio.",
+    "en": "A B&B in a 1930s building between the seafront and Lido Centro station. The sea in the morning, the Colosseum in the afternoon."
+  },
+  "fotoPrincipale": "",
+  "servizi": {
+    "it": ["Colazione inclusa", "Aria condizionata", "Wi-Fi veloce", "Check-in autonomo"],
+    "en": ["Breakfast included", "Air conditioning", "Fast Wi-Fi", "Self check-in"]
+  },
+  "camere": [
+    {
+      "id": "maestrale",
+      "nome": { "it": "Camera Maestrale", "en": "Maestrale Room" },
+      "descrizione": { "it": "Matrimoniale luminosa sul cortile interno, silenziosa anche ad agosto.", "en": "Bright double facing the quiet inner courtyard, calm even in August." },
+      "dettagli": { "it": ["Matrimoniale", "18 m²", "Cortile"], "en": ["Double", "18 m²", "Courtyard"] },
+      "ospitiMax": 2,
+      "prezzoBase": 85,
+      "foto": "",
+      "colore": "linear-gradient(135deg,#cfe8e6,#7fbfc4)"
+    },
+    {
+      "id": "libeccio",
+      "nome": { "it": "Camera Libeccio", "en": "Libeccio Room" },
+      "descrizione": { "it": "Balcone con vista sul mare e sul Pontile. La più richiesta per i tramonti.", "en": "Balcony overlooking the sea and the Pier. The favourite for sunsets." },
+      "dettagli": { "it": ["Vista mare", "Balcone", "22 m²"], "en": ["Sea view", "Balcony", "22 m²"] },
+      "ospitiMax": 2,
+      "prezzoBase": 110,
+      "foto": "",
+      "colore": "linear-gradient(180deg,#f4c27a,#e2603f 55%,#0f5c6e 56%,#0a3d49)"
+    },
+    {
+      "id": "scirocco",
+      "nome": { "it": "Suite Scirocco", "en": "Scirocco Suite" },
+      "descrizione": { "it": "Fino a 3 ospiti, con angolo salotto e divano letto. Ideale per famiglie.", "en": "Up to 3 guests, with a sitting area and sofa bed. Ideal for families." },
+      "dettagli": { "it": ["Fino a 3", "Salotto", "28 m²"], "en": ["Up to 3", "Sitting area", "28 m²"] },
+      "ospitiMax": 3,
+      "prezzoBase": 140,
+      "foto": "",
+      "colore": "linear-gradient(135deg,#f6efe2,#e9cf9a 60%,#d9a95b)"
+    }
+  ],
+  "distanze": [
+    { "luogo": { "it": "Spiaggia e lungomare", "en": "Beach and seafront" }, "tempo": { "it": "2 min a piedi", "en": "2 min walk" } },
+    { "luogo": { "it": "Pontile di Ostia", "en": "Ostia Pier" }, "tempo": { "it": "3 min a piedi", "en": "3 min walk" } },
+    { "luogo": { "it": "Stazione Lido Centro", "en": "Lido Centro station" }, "tempo": { "it": "6 min a piedi", "en": "6 min walk" } },
+    { "luogo": { "it": "Scavi di Ostia Antica", "en": "Ostia Antica ruins" }, "tempo": { "it": "10 min in treno", "en": "10 min by train" } },
+    { "luogo": { "it": "Roma centro (Piramide)", "en": "Central Rome (Piramide)" }, "tempo": { "it": "30 min in treno", "en": "30 min by train" } },
+    { "luogo": { "it": "Aeroporto di Fiumicino", "en": "Fiumicino Airport" }, "tempo": { "it": "25 min in auto", "en": "25 min by car" } }
+  ],
+  "contatti": {
+    "email": "info@esempio.it",
+    "telefono": "+39 000 000 0000",
+    "indirizzo": "Lido di Ostia, Roma"
+  },
+  "cin": "IT058091C2XXXXXXXX",
+  "notaImposta": {
+    "it": "L'imposta di soggiorno di Roma Capitale non è inclusa e si paga in struttura.",
+    "en": "Rome's city tourist tax is not included and is paid at the property."
+  },
+  "regole": {
+    "checkInDalle": "15:00",
+    "checkInFinoAlle": "20:00",
+    "checkOutEntro": "10:30",
+    "nottiMinime": 2,
+    "scontoDiretto": 10,
+    "anticipoMassimoGiorni": 365
+  }
+}

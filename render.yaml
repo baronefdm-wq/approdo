@@ -1,0 +1,44 @@
+# Pubblicazione su Render (Blueprint). Le chiavi segrete le genera Render: non vanno scritte qui.
+# Il disco permanente conserva il database: senza disco le prenotazioni si perderebbero a ogni riavvio,
+# per questo serve il piano "starter" (il piano gratuito non ha dischi).
+services:
+  - type: web
+    name: approdo-casa-libeccio
+    runtime: node
+    plan: starter
+    region: frankfurt
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /salute
+    autoDeploy: true
+    disk:
+      name: dati
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATA_MODE
+        value: demo
+      - key: DATABASE_PATH
+        value: /var/data/approdo.db
+      - key: SITE_URL
+        sync: false
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ICAL_FEED_KEY
+        generateValue: true
+      - key: NOTIFY_EMAIL_TO
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        sync: false
