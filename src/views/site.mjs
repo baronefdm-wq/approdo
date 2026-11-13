@@ -34,13 +34,13 @@ function photo(file, colore, label) {
   return html`<div class="ph-fill" style="background:${colore || "var(--foam)"}"></div>`;
 }
 
-export function sitePage(s, db, lang) {
+export function sitePage(s, db, lang, { staticDemo = false } = {}) {
   const t = T[lang];
   const L = (o) => (o && (o[lang] || o.it)) || "";
   const st = db.settings();
   const prices = Object.fromEntries(db.rooms().map((r) => [r.id, r.price]));
   const other = lang === "it" ? "en" : "it";
-  const demo = env.dataMode === "demo";
+  const demo = staticDemo || env.dataMode === "demo";
   const body = html`
 ${demo ? html`<div class="demo"><div class="wrap">${lang === "it" ? "Versione dimostrativa: le prenotazioni non sono reali." : "Demo version: bookings are not real."}</div></div>` : ""}
 <div class="awning" aria-hidden="true"></div>
@@ -88,7 +88,7 @@ ${s.distanze?.length ? html`<section class="sand"><div class="wrap">
 <section id="prenota"><div class="wrap">
   <div class="sec-head"><p class="eyebrow">${t.bookEyebrow}</p><h2>${t.bookTitle}</h2></div>
   <noscript><p class="notice">${t.noJs} ${s.contatti?.email} · ${s.contatti?.telefono}</p></noscript>
-  <div class="ap-book" id="booking" data-lang="${lang}">
+  <div class="ap-book" id="booking" data-lang="${lang}" data-demo="${staticDemo ? "1" : ""}" data-api="${staticDemo ? "disponibilita.json" : "/api/disponibilita"}">
     <div class="panel">
       <div class="ap-head"><h3>${t.availability}</h3>
         <div class="row-gap"><button class="btn-sm ghost" type="button" id="ap-prev" aria-label="‹">‹</button><button class="btn-sm ghost" type="button" id="ap-next" aria-label="›">›</button></div>

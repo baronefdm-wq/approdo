@@ -107,6 +107,13 @@
     var f = e.target, btn = $("req-send");
     var v = function (n) { var el = f.elements.namedItem(n); return el ? el.value : ""; };
     var body = { lang: lang, roomId: room, checkIn: start, checkOut: end, arrival: v("arrival"), guests: Number(v("guests")), name: v("name"), email: v("email"), phone: v("phone"), note: v("note"), website: v("website") };
+    if (root.dataset.demo) {
+      var box = $("req-ok"); box.innerHTML = "";
+      var p0 = document.createElement("p");
+      p0.textContent = L("Questa è una demo: la richiesta non è stata inviata. Sul sito vero arriverebbe subito al gestore via email, e tu riceveresti un riepilogo.",
+        "This is a demo: the request was not sent. On the real site it would reach the owner by email right away, and you would get a summary.");
+      box.appendChild(p0); box.hidden = false; return;
+    }
     btn.disabled = true;
     fetch("/api/richieste", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) })
       .then(function (r) { return r.json().then(function (j) { return { status: r.status, j: j }; }); })
@@ -123,8 +130,10 @@
   });
 
   function load() {
-    fetch("/api/disponibilita").then(function (r) { return r.json(); }).then(function (a) {
-      A = a; if (!room || !A.rooms.some(function (r) { return r.id === room; })) room = A.rooms[0].id; render();
+    fetch(root.dataset.api || "/api/disponibilita").then(function (r) { return r.json(); }).then(function (a) {
+      A = a;
+      if (root.dataset.demo) { var t = new Date(); A.today = t.getFullYear() + "-" + pad(t.getMonth() + 1) + "-" + pad(t.getDate()); if (A.maxDate < A.today) A.maxDate = A.today.slice(0, 4) * 1 + 1 + A.today.slice(4); }
+      if (!room || !A.rooms.some(function (r) { return r.id === room; })) room = A.rooms[0].id; render();
     }).catch(function () { err(L("Non riesco a caricare le disponibilità. Ricarica la pagina.", "Couldn't load availability. Please reload.")); });
   }
   load();
