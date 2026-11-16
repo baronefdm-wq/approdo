@@ -138,6 +138,20 @@
   }
   load();
 
+  // Calcolatore del risparmio (solo nella demo)
+  var calc = document.getElementById("calc");
+  if (calc) {
+    var upd = function () {
+      var n = +$("c-nights").value, pr = +$("c-price").value, fee = +$("c-fee").value / 100, sh = +$("c-share").value / 100;
+      $("o-nights").textContent = n; $("o-price").textContent = eur(pr); $("o-fee").textContent = Math.round(fee * 100) + "%"; $("o-share").textContent = Math.round(sh * 100) + "%";
+      var fees = n * pr * fee;
+      $("r-fees").textContent = eur(fees);
+      $("r-save").textContent = eur(fees * sh) + L(" / anno", " / year");
+    };
+    ["c-nights", "c-price", "c-fee", "c-share"].forEach(function (k) { $(k).addEventListener("input", upd); });
+    upd();
+  }
+
   // Mare animato se non c'è una foto principale
   var c = document.getElementById("sea");
   if (c && c.getContext) {

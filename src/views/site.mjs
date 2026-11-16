@@ -125,6 +125,7 @@ ${s.distanze?.length ? html`<section class="sand"><div class="wrap">
   </div>
 </div></section>
 
+${staticDemo ? ownerCalculator(lang) : ""}
 <footer class="site"><div class="wrap">
   <span>${s.nome} · ${s.contatti?.indirizzo}</span>
   <span>${s.contatti?.email} · ${s.contatti?.telefono}</span>
@@ -132,6 +133,35 @@ ${s.distanze?.length ? html`<section class="sand"><div class="wrap">
 </div></footer>
 <script src="/prenota.js" defer></script>`;
   return page({ title: `${s.nome} · ${L(s.tipo)}`, lang, body, head: raw(`<meta name="description" content="${String(L(s.descrizione)).replace(/"/g, "&quot;")}">`) });
+}
+
+/** Solo nella demo: calcolatore del risparmio sulle commissioni, per i proprietari. */
+function ownerCalculator(lang) {
+  const en = lang === "en";
+  const t = (it, e) => (en ? e : it);
+  return html`
+<section class="owner" id="proprietari"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">${t("Per chi gestisce un B&B", "For B&B owners")}</p>
+    <h2>${t("Quanto vi costano oggi i portali?", "What do booking sites cost you today?")}</h2>
+    <p>${t("Muovete i cursori con i vostri numeri. Ogni prenotazione che arriva dal vostro sito invece che da un portale è una commissione che resta a voi.", "Move the sliders to your numbers. Every booking that comes through your own site instead of a platform keeps the fee in your pocket.")}</p>
+  </div>
+  <div class="calc" id="calc" data-lang="${lang}">
+    <div class="ctrl">
+      <label for="c-nights">${t("Notti vendute in un anno", "Nights sold per year")} <output id="o-nights" class="num"></output><input type="range" id="c-nights" min="50" max="1000" step="10" value="420"></label>
+      <label for="c-price">${t("Prezzo medio a notte", "Average nightly rate")} <output id="o-price" class="num"></output><input type="range" id="c-price" min="40" max="250" step="5" value="95"></label>
+      <label for="c-fee">${t("Commissione del portale", "Platform fee")} <output id="o-fee" class="num"></output><input type="range" id="c-fee" min="10" max="25" step="1" value="15"></label>
+      <label for="c-share">${t("Prenotazioni spostate sul vostro sito", "Bookings moved to your own site")} <output id="o-share" class="num"></output><input type="range" id="c-share" min="5" max="60" step="5" value="25"></label>
+    </div>
+    <div class="result">
+      <p>${t("Commissioni pagate oggi in un anno", "Fees paid today, per year")}</p>
+      <div class="num mid" id="r-fees">—</div>
+      <p>${t("Commissioni risparmiate con il vostro sito", "Fees saved with your own site")}</p>
+      <div class="num big" id="r-save">—</div>
+      <p class="small">${t("Stima indicativa, prima dei costi del sito (server e assistenza). Il risultato reale dipende da stagione, recensioni e da quanti ospiti tornano o vi trovano su Google.", "Rough estimate, before the site's own costs (hosting and support). Real results depend on season, reviews and how many guests return or find you on Google.")}</p>
+    </div>
+  </div>
+</div></section>`;
 }
 
 const STATUS = {

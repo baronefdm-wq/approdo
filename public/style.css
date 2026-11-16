@@ -89,6 +89,20 @@ section.sand{background:var(--sand)}
 footer.site{border-top:1px solid var(--line)}
 footer.site .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;padding-block:28px;font-size:.9rem;color:var(--muted)}
 
+/* Calcolatore per i proprietari (solo demo) */
+.owner{background:var(--owner-bg);color:var(--owner-fg)}
+.owner .eyebrow{color:var(--sun)}
+.owner .sec-head p:not(.eyebrow),.owner .result p{color:var(--owner-fg);opacity:.8}
+.calc{display:grid;gap:22px}
+@media(min-width:860px){.calc{grid-template-columns:1fr 1fr}}
+.calc .ctrl{display:grid;gap:18px;background:rgba(255,255,255,.07);border-radius:18px;padding:22px}
+.calc label{color:var(--owner-fg)}
+.calc output{color:var(--sun)}
+.calc input[type=range]{padding:0;border:0;background:transparent;accent-color:var(--sun)}
+.calc .result{display:grid;gap:10px;align-content:start}
+.calc .mid{font-size:1.6rem}
+.calc .big{font-family:var(--f-display);font-weight:800;font-size:clamp(2.4rem,7vw,4.2rem);color:var(--sun);line-height:1}
+
 /* Prenotazione */
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:14px;min-width:0}
 .ap-book{display:grid;gap:20px}
